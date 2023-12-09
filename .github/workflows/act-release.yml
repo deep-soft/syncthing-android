@@ -172,7 +172,7 @@ jobs:
         mkdir -p ./signed-apk
         echo "LIST: ./app/build/outputs/apk/release"
         ls -la ./app/build/outputs/apk/release/
-        mv app-release.apk ${{ env.PRG_NAME }}-${{ env.VERSION }}.apk || true;
+        mv app-release-unsigned.apk ${{ env.PRG_NAME }}-${{ env.VERSION }}.apk || true;
         cp ./app/build/outputs/apk/release/*.apk ./signed-apk/
         ls -lR ./app/build/outputs/
         pushd ./signed-apk/
