@@ -38,7 +38,7 @@ env:
   PRG_VERSION:  "v1.0.0"
   VERSION:      "1.0.0"
 # gradle options
-  GRADLE_OPTION: "--no-daemon buildNative lint "
+  GRADLE_OPTION: ' --no-daemon buildNative lint '
 # secrets
   ANDROID_SIGNING_KEY:    '${{ secrets.ANDROID_SIGNING_KEY }}'
   #  signingKeyBase64:    '${{ secrets.ANDROID_SIGNING_KEY }}'
@@ -158,7 +158,7 @@ jobs:
         # ./gradlew assembleAndroidFullOpenglFatRelease
         #./gradlew assembleAndroidFullOpenglArm64Release
         #./gradlew "${{ env.PRG_TASK    }}${{ env.PRG_FLAVOR  }}${{ env.uPRG_OGL  }}${{ env.uPRG_ARCH  }}${{ env.uPRG_TYPE  }}"
-        ./gradlew "${{ env.GRADLE_OPTION }}" "${{ env.PRG_TASK    }}${{ env.uPRG_TYPE  }}"
+        ./gradlew ${{ env.GRADLE_OPTION }} ${{ env.PRG_TASK    }}${{ env.uPRG_TYPE  }}
 
 #assembleAndroidFullOpenglArm64Release
 # android/syncthing-android/build/outputs/apk/androidFullOpenglArm64/release/syncthing-android-androidFull-opengl-arm64-release-unsigned.apk
