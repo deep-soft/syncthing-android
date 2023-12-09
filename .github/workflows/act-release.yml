@@ -57,6 +57,9 @@ jobs:
     steps:
     - name: checkout syncthing-android
       uses: deep-soft/checkout@v4
+      with:
+        submodules: true
+        fetch-depth: 0
 
     - name: Get ref, set build version
       continue-on-error: true
@@ -155,9 +158,8 @@ jobs:
     - name: gradle ${{ env.PRG_TASK    }}${{ env.uPRG_TYPE  }}
 #      working-directory: ./app
       run: |
-        # ./gradlew assembleAndroidFullOpenglFatRelease
-        #./gradlew assembleAndroidFullOpenglArm64Release
         #./gradlew "${{ env.PRG_TASK    }}${{ env.PRG_FLAVOR  }}${{ env.uPRG_OGL  }}${{ env.uPRG_ARCH  }}${{ env.uPRG_TYPE  }}"
+        git config --system --add safe.directory '*'
         ./gradlew ${{ env.GRADLE_OPTION }} ${{ env.PRG_TASK    }}${{ env.uPRG_TYPE  }}
 
 #assembleAndroidFullOpenglArm64Release
