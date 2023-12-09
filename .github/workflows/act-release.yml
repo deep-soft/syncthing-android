@@ -173,7 +173,7 @@ jobs:
         pushd ./app/build/outputs/apk/release
         echo "LIST: ./"
         ls -la ./
-        mv app-release-unsigned.apk ${{ env.PRG_NAME }}-${{ env.VERSION }}.apk || true;
+        mv app-release-unsigned.apk ${{ env.PRG_NAME }}-${{ env.PRG_VERSION }}.apk || true;
         popd
         cp ./app/build/outputs/apk/release/*.apk ./signed-apk/
         ls -lR ./app/build/outputs/
