@@ -159,7 +159,7 @@ jobs:
 #      working-directory: ./app
       run: |
         #./gradlew "${{ env.PRG_TASK    }}${{ env.PRG_FLAVOR  }}${{ env.uPRG_OGL  }}${{ env.uPRG_ARCH  }}${{ env.uPRG_TYPE  }}"
-        git config --system --add safe.directory '*'
+        # git config --system --add safe.directory '*'
         ./gradlew ${{ env.GRADLE_OPTION }} ${{ env.PRG_TASK    }}${{ env.uPRG_TYPE  }}
 
 #assembleAndroidFullOpenglArm64Release
