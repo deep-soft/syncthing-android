@@ -129,7 +129,7 @@ jobs:
       continue-on-error: true
       uses: deep-soft/action-gh-release@v1
       with:
-        # draft: true
+        draft: true
         tag_name: '${{ env.TAG_NAME }}-${{ env.TAG_VERSION }}-src'
         files: |
             ${{ env.ZIP_SRC_ARCHIVE }}
