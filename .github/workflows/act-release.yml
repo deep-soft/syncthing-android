@@ -101,13 +101,13 @@ jobs:
       shell: bash
       run: |
         #set -x;
-        sed -i 's!storeFile file!// storeFile file!' "build.gradle";
-        sed -i 's!signingConfig !// signingConfig !' "build.gradle";
+        sed -i 's!storeFile file!// storeFile file!' "build.gradle.kts";
+        sed -i 's!signingConfig !// signingConfig !' "build.gradle.kts";
         echo "storeFile ... ";
-        grep -i storeFile "build.gradle" || true;
+        grep -i storeFile "build.gradle.kts" || true;
         sleep 2
         echo "signingConfig ... ";
-        grep signingConfig "build.gradle" || true;
+        grep signingConfig "build.gradle.kts" || true;
         echo "... done";
 
 # zip release begin
