@@ -1,3 +1,5 @@
+import org.gradle.configurationcache.extensions.capitalized
+
 plugins {
     id("com.android.application")
     id("com.github.ben-manes.versions")
@@ -42,8 +44,8 @@ android {
         applicationId = "com.nutomic.syncthingandroid"
         minSdk = 21
         targetSdk = 33
-        versionCode = 4372
-        versionName = "1.27.2-rc.2"
+        versionCode = 4381
+        versionName = "1.27.2.1"
         testApplicationId = "com.nutomic.syncthingandroid.test"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -108,4 +110,12 @@ tasks.register<Delete>("deleteUnsupportedPlayTranslations") {
         "src/main/play/listings/nn/",
         "src/main/play/listings/ta/",
     )
+}
+
+project.afterEvaluate {
+    android.buildTypes.forEach {
+        tasks.named("merge${it.name.capitalized()}JniLibFolders") {
+            dependsOn(":syncthing:buildNative")
+        }
+    }
 }
