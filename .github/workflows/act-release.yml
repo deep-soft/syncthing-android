@@ -114,7 +114,7 @@ jobs:
     - name: Create Archive src
       if:  ${{ inputs.archive_src}}
       continue-on-error: true
-      uses: deep-soft/zip-release@v2
+      uses: deep-soft/zip-release@v3
       with:
         type: 'zip'
         filename: '${{ env.TAG_NAME }}-src'
@@ -127,7 +127,7 @@ jobs:
     - name: Publish Archive src
       if:  ${{ inputs.archive_src}}
       continue-on-error: true
-      uses: deep-soft/action-gh-release@v1
+      uses: deep-soft/action-gh-release@v2.1
       with:
         draft: true
         tag_name: '${{ env.TAG_NAME }}-${{ env.TAG_VERSION }}-src'
@@ -184,7 +184,7 @@ jobs:
         #ls -l ./
         popd
 
-    - uses: deep-soft/sign-android-release@master
+    - uses: deep-soft/sign-android-release@v1
       continue-on-error: true
       name: Sign app APK
       if: env.ANDROID_SIGNING_KEY != null
@@ -202,7 +202,7 @@ jobs:
     - name: Publish signed apk package
       if: env.ANDROID_SIGNING_KEY != null
       continue-on-error: true
-      uses: deep-soft/action-gh-release@v1
+      uses: deep-soft/action-gh-release@v2.1
       with:
         # draft: true
         tag_name: ${{ env.TAG_NAME }}
@@ -213,7 +213,7 @@ jobs:
     - name: Publish unsigned apk package
       if: env.ANDROID_SIGNING_KEY == null
       continue-on-error: true
-      uses: deep-soft/action-gh-release@v1
+      uses: deep-soft/action-gh-release@v2.1
       with:
         draft: true
         tag_name: ${{ env.TAG_VERSION }}${{ env.TAG_BUILD }}
@@ -222,7 +222,7 @@ jobs:
 
     - name: Archive APK
       continue-on-error: true
-      uses: deep-soft/upload-artifact@v3
+      uses: deep-soft/upload-artifact@v4
       with:
         name: release
         path: ./app/build/outputs/apk/release/*.apk
@@ -232,7 +232,7 @@ jobs:
     - name: Create Archive ALL
       if:  ${{ inputs.archive_ALL}}
       continue-on-error: true
-      uses: deep-soft/zip-release@v2
+      uses: deep-soft/zip-release@v3
       with:
         type: 'zip'
         filename: '${{ env.TAG_VERSION }}${{ env.TAG_BUILD }}-ALL'
@@ -244,7 +244,7 @@ jobs:
     - name: Publish Archive ALL
       if:  ${{ inputs.archive_ALL}}
       continue-on-error: true
-      uses: deep-soft/action-gh-release@v1
+      uses: deep-soft/action-gh-release@v2.1
       with:
         draft: true
         tag_name: ${{ env.TAG_VERSION }}${{ env.TAG_BUILD }}-ALL
